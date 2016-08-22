@@ -1,0 +1,1 @@
+# elasticsearch-ssdeep-plugin
