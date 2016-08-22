@@ -1,0 +1,24 @@
+{
+  "query": {
+    "function_score": {
+      "query": {},
+      "score_mode": "sum",
+      "boost_mode": "replace",
+      "min_score": 1,
+      "functions": [
+        {
+          "script_score": {
+            "script": {
+              "lang": "native",
+              "script": "ssdeep",
+              "params": {
+                "field": "receivedPathSSDeep",
+                "hash": "48:IrJSCJSOsjbeb9JLdSLJSrGhGGEnqSoyMM:uH8/M9JLdOAGhGGEqVyMM"
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

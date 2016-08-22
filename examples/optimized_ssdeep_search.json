@@ -1,0 +1,50 @@
+{
+  "query": {
+    "bool": {
+      "filter": {
+        "bool": {
+          "minimum_should_match": 2,
+          "should": [
+            {"terms": {"receivedPathSSDeepHashBlockSize": [24, 48, 96]}},
+            {
+              "bool": {
+                "minimum_should_match": 1,
+                "should": [
+                  {"terms": {"receivedPathSSDeepHashChunks": ["634c596e774a33"]}},
+                  {"terms": {"receivedPathSSDeepHashDoubleChunks": ["6"]}}
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "must": [
+        {
+          "function_score": {
+            "query": {},
+            "score_mode": "sum",
+            "boost_mode": "replace",
+            "min_score": 0,
+            "functions": [
+              {
+                "weight": 1,
+                "script_score": {
+                  "script": {
+                    "lang": "native",
+                    "script": "ssdeep",
+                    "params": {
+                      "field": "receivedPathSSDeep",
+                      "hash": "48:IrJSCJSOsjbeb9JLdSLJSrGhGGEnqSoyMM:uH8/M9JLdOAGhGGEqVyMM"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "should": [],
+      "must_not": []
+    }
+  }
+}
