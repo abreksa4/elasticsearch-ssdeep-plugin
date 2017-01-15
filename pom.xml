@@ -31,7 +31,7 @@
 
     <properties>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <ssdeep.version>1.0</ssdeep.version>
+        <ssdeep.version>[1.0,)</ssdeep.version>
 
         <!-- define class name for the descriptor file -->
         <elasticsearch.plugin.classname>com.phishme.ssdeep.es.plugin.SSDeepPlugin</elasticsearch.plugin.classname>
